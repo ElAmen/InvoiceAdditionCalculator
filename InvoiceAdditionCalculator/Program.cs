@@ -11,21 +11,15 @@ namespace InvoiceAdditionCalculator
 
         static void Main(string[] args)
         {
+            var sub = 100;
+
+            Console.WriteLine($"\n\n\n\n----------EXCLUSIVE FOR {sub}-------------");
+            var test1 = new IAProcessor(false).ProcessInvAdditions(Convert.ToDecimal(sub));
 
 
-            for (int i = 0; i < 10; i++)
-            {
-                var sub = new Random().Next(200000, 500000);
+            Console.WriteLine($"\n\n----------INCLUSIVE {test1}-------------");
+            var test2 = new IAProcessor(true).ProcessInvAdditions(test1);
 
-                sub = 100;
-
-                Console.WriteLine($"\n\n\n\n----------EXCLUSIVE FOR {sub}-------------");
-                var test1 = new IAProcessor(false).ProcessInvAdditions(Convert.ToDecimal(sub));
-
-
-                Console.WriteLine($"\n\n----------INCLUSIVE {test1}-------------");
-                var test2 = new IAProcessor(true).ProcessInvAdditions(test1);
-            }
 
             Console.ReadKey();
         }
@@ -87,6 +81,8 @@ namespace InvoiceAdditionCalculator
                 {
                     if (ia.CalculationMethod == CalculationMethod.CalculateFromItemSubtolal)
                     {
+                        //TODO
+                        //Flat rate before %ge
                         if (ia.IsFlatFee)
                         {
                             //rate += 1 / ia.Figure;
@@ -98,6 +94,8 @@ namespace InvoiceAdditionCalculator
                     }
                     else
                     {
+                        //TODO
+                        //Flat rate before %ge
                         if (ia.IsFlatFee)
                         {
                             //rate = rate * 1 / ia.Figure;
